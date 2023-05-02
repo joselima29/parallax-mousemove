@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h2 class="object">Space <br><span>Background</span></h2>
+        <img src="images/1.png" class="object" data-value="-2" alt="...">
+        <img src="images/2.png" class="object" data-value="6" alt="...">
+        <img src="images/3.png" class="object" data-value="4" alt="...">
+        <img src="images/4.png" class="object" data-value="-6" alt="...">
+        <img src="images/5.png" class="object" data-value="8" alt="...">
+        <img src="images/6.png" class="object" data-value="-4" alt="...">
+        <img src="images/7.png" class="object" data-value="5" alt="...">
+        <img src="images/8.png" class="object" data-value="-9" alt="...">
+        <img src="images/9.png" class="object" data-value="-5" alt="...">
+    </div>
+    <script type="text/javascript">
+        document.addEventListener("mousemove", parallax);
+        function parallax(e){
+            document.querySelectorAll(".object").forEach(function(move){
+                var moving_value = move.getAttribute("data-value");
+                var x = (e.clientX * moving_value) / 250;
+                var y = (e.clientY * moving_value) / 250;
+
+                move.style.transform = "translateX(" + x + "px) translateY(" + y + "px)";
+            });
+        }
+    </script>
+</body>
+</html>
