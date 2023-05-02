@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
+
 <body>
     <div class="container">
         <h2 class="object">Space <br><span>Background</span></h2>
@@ -21,16 +23,30 @@
         <img src="images/9.png" class="object" data-value="-5" alt="...">
     </div>
     <script type="text/javascript">
-        document.addEventListener("mousemove", parallax);
-        function parallax(e){
-            document.querySelectorAll(".object").forEach(function(move){
-                var moving_value = move.getAttribute("data-value");
-                var x = (e.clientX * moving_value) / 250;
-                var y = (e.clientY * moving_value) / 250;
+        if ('ontouchstart' in document.documentElement) {
+            document.addEventListener("touchmove", parallax);
+        } else {
+            document.addEventListener("mousemove", parallax);
+        }
 
+        function parallax(e) {
+            document.querySelectorAll(".object").forEach(function (move) {
+                var moving_value = move.getAttribute("data-value");
+                var x = 0;
+                var y = 0;
+                if (e.touches) {
+                    x = (e.touches[0].clientX * moving_value) / 250;
+                    y = (e.touches[0].clientY * moving_value) / 250;
+                } else {
+                    x = (e.clientX * moving_value) / 250;
+                    y = (e.clientY * moving_value) / 250;
+                }
                 move.style.transform = "translateX(" + x + "px) translateY(" + y + "px)";
             });
         }
+
+
     </script>
 </body>
+
 </html>
